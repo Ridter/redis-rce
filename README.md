@@ -10,7 +10,7 @@ Compile exp.so from <https://github.com/RicterZ/RedisModules-ExecuteCommand>.
 
 ```
 usage: redis-rce.py [-h] -r RHOST [-p RPORT] -L LHOST [-P LPORT] [-f FILE]
-                    [-v]
+                    [-a AUTH] [-v]
 
 Redis 4.x/5.x RCE with RedisModules
 
@@ -25,6 +25,7 @@ optional arguments:
   -P LPORT, --lport LPORT
                         rogue server listen port, default 21000
   -f FILE, --file FILE  RedisModules to load, default exp.so
+  -a AUTH, --auth AUTH  redis password
   -v, --verbose         show more info
 ```
 
