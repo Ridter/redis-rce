@@ -102,7 +102,7 @@ class RogueServer:
         self._remote = remote
         self._file = file
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._sock.bind((self._host, self._port))
+        self._sock.bind(('0.0.0.0', self._port))
         self._sock.settimeout(15)
         self._sock.listen(10)
 
